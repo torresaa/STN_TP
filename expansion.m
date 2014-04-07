@@ -1,6 +1,7 @@
 function [ s_t ] = expansion( F, a_k )
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+
+K = length(a_k);
+s_t = zeros(1,K*F);
 
 
 end
