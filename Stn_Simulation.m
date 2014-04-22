@@ -15,6 +15,15 @@
 %   F: Facteur de surechantillonage
 %   s_t: vecteur surechantillonne
 %   t_st: temps de la signal s_t
+%   alpha: coefficient de roll-off pour srrc
+%   Faltan toas las ys de los filtros********************************
+%   x_t: signal filtré (srrc)
+%   t_x: temps du signal x_t
+%   EbNo: Rapport signal à bruit du signal en dB
+%   sigma2_x: variance du signal x_t
+%   sigma2_n: variance du bruit
+%   n_t: vecteur de bruit
+%   r_t: signal x_t bruité
 
 % -------------------------------------------
 % Liste des Fonctions
@@ -26,35 +35,79 @@
 %   [s_t] = expansion (F, a_k)
 
 
-%%
+%%  Definitions et Question 1
+clc; clear all; close all;
 N = 2048; 
 F = 16;
 D = 10^6;
 L = 8;
 T = 1/D;    % Pour mod 2-PAM
+alpha = 0.5;
+EbNo = 10; % en dB
 
 [b_n m_emp sigma2_emp] = bit_generator(N);
-a_k = mapping_2PAM(b_n);
+a_k = mapping_2PAM(b_n) ; % + cte para Question 5
 s_t = expansion(F, a_k);
 t_st = 0:T/F:((length(a_k)*T)-T/F);
 
 figure 
 plot(t_st,s_t);grid on;xlabel('t (secondes)');ylabel('s(t)'); 
-% T = 1us, T_total = 2,048 ms
+% T = 1us, T_total = 2048 ms
 title('Expansion de signal a_k');
 
-%OJO: Esto No Sirve, error con los tiempos de concatenado y de duracion de
-%filtro
 t_filtre = [0 : T/F : L*T];
-t_y = [t_st (length(a_k)*T):T/F:((length(a_k)/D)+T/F*(F-2))];
+t_y = [t_st (length(a_k)*T):T/F:(length(a_k)*T)+(L/(1/F))*T/F-T/F];
 
-%  Mise en forme NRZ 
+%%  Question 2
+%   Mise en forme NRZ 
 filtre_nrz = gen_filters ('nrz', t_filtre, T, F, L, 0);
 y_nrz = conv(s_t,filtre_nrz);
-figure
-plot(t_y, y_nrz);
-
+%figure
+%plot(t_y, y_nrz);
 [S_nrz f_nrz] = spectrum(y_nrz, T); 
 
 
+%  Mise en forme RZ 
+filtre_rz = gen_filters ('rz', t_filtre, T, F, L, 0);
+y_rz = conv(s_t,filtre_rz);
+%figure
+%plot(t_y, y_rz);
+[S_rz f_rz] = spectrum(y_rz, T); 
 
+
+%  Mise en forme SRRC 
+filtre_srrc = gen_filters ('srrc', t_filtre, T, F, L, alpha);
+y_srrc = conv(s_t,filtre_srrc);
+%figure
+%plot(t_y, y_srrc);
+[S_srrc f_srrc] = spectrum(y_srrc, T); 
+
+%%  Question 3
+x_t = y_srrc; % Par la suite, signal dans les ennonces
+t_x = t_y;
+
+figure
+subplot(2,1,1)
+plot(t_x,x_t);grid on; title('Signal x_t');xlabel('t (secondes)');ylabel('Volts');
+subplot(2,1,2)
+plot(t_st,s_t);grid on; title('Signal s_t');xlabel('t (secondes)');ylabel('Volts');
+% OJO: Mostrar que las senales no son del mismo grande, pero en x_t los
+% ultimos valores son ceros
+
+%%  Question 4
+%fft(corr2(s_t,s_t)); Se comenta en el informe pero no se hace por fea
+%fft(corr2(x_t,x_t));
+
+figure
+psd(spectrum.welch,s_t,'Fs',D); % LLega hasta 500kHz porque es hasta Fs/2
+figure
+psd(spectrum.welch,x_t,'Fs',D);
+
+%%  Question 5
+% Sumar cte para cambiar la media, meter graficas y explicar
+
+%%  Question 6
+sigma2_x = var(x_t);
+sigma2_n = F*sigma2_x/(10^(EbNo/10));
+n_t = sigma2_n*randn(1,length(x_t));
+r_t = x_t + n_t;
