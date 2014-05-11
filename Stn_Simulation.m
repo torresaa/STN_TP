@@ -68,24 +68,26 @@ t_y = [t_st (length(a_k)*T):T/F:(length(a_k)*T)+(L/(1/F))*T/F-T/F];
 %   Mise en forme NRZ 
 filtre_nrz = gen_filters ('nrz', t_filtre, T, F, L, 0);
 y_nrz = conv(s_t,filtre_nrz);
-%figure
-%plot(t_y, y_nrz);
+figure
+plot(t_y, y_nrz);grid on;xlabel('t(secondes)');ylabel('amplitude'); 
+xlim([0 0.00005]);
+title()
 [S_nrz f_nrz] = spectrum(y_nrz, T); 
 
 
 %  Mise en forme RZ 
 filtre_rz = gen_filters ('rz', t_filtre, T, F, L, 0);
 y_rz = conv(s_t,filtre_rz);
-%figure
-%plot(t_y, y_rz);
+figure
+plot(t_y, y_rz);
 [S_rz f_rz] = spectrum(y_rz, T); 
 
 
 %  Mise en forme SRRC 
 filtre_srrc = gen_filters ('srrc', t_filtre, T, F, L, alpha);
 y_srrc = conv(s_t,filtre_srrc);
-%figure
-%plot(t_y, y_srrc);
+figure
+plot(t_y, y_srrc);
 [S_srrc f_srrc] = spectrum(y_srrc, T); 
 
 %%  Question 3
