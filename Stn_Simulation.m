@@ -24,6 +24,12 @@
 %   sigma2_n: variance du bruit
 %   n_t: vecteur de bruit
 %   r_t: signal x_t bruité
+%   h_r: filtre adaptée
+%   p_t: convolution entre filtre de mise en forme et filtre adaptée
+%   y_t: sortie du filtre de reception
+%   y_k: Symboles reçues
+%   y_n: sequence de bits reçu
+%   TEB: Taux d'erreur binaire
 
 % -------------------------------------------
 % Liste des Fonctions
@@ -43,7 +49,7 @@ D = 10^6;
 L = 8;
 T = 1/D;    % Pour mod 2-PAM
 alpha = 0.5;
-EbNo = 10; % en dB
+EbNo = 30; % en dB
 
 [b_n m_emp sigma2_emp] = bit_generator(N);
 a_k = mapping_2PAM(b_n) ; % + cte para Question 5
@@ -107,7 +113,41 @@ psd(spectrum.welch,x_t,'Fs',D);
 % Sumar cte para cambiar la media, meter graficas y explicar
 
 %%  Question 6
+% Responder pregunta teorica 
 sigma2_x = var(x_t);
 sigma2_n = F*sigma2_x/(10^(EbNo/10));
 n_t = sigma2_n*randn(1,length(x_t));
 r_t = x_t + n_t;
+
+%% Question 7: Responder pregunta teorica
+
+%% Question 8 
+% ojo nombrar las variables y definir vector de tiempo de ahi verificar que
+% el maximo de p_t este en Ts (pregunta 9) 
+h_r = fliplr(filtre_srrc);
+p_t = conv(filtre_srrc,h_r);
+figure
+subplot(3,1,2);
+plot(t_filtre,h_r);grid on;title('Filtre adaptée');
+subplot(3,1,3);
+t_pt = [0 : T/F : 2*L*T ];
+plot(t_pt,p_t);grid on;title('Filtre p_t');
+subplot(3,1,1);
+plot(t_filtre,filtre_srrc);grid on;title('Filtre de mise en forme');
+
+%% Question 9
+% nombrar variables
+y_t = conv(r_t,h_r);
+eyepattern(y_t,T,F,3,1,1);
+
+%% Question 10-11-12
+y_t = y_t(((length(y_t)-length(s_t))/2):end-((length(y_t)-length(s_t))/2)-1);
+y_k = y_t(1:16:end);
+
+%% Question 13
+figure
+plot(real(y_k),imag(y_k),'lineStyle','none','marker','x','lineWidth',3);
+title('Constellation de y_k'); grid on;
+xlim([-2 2 ]);
+y_n = y_k > 0;
+TEB = (sum(xor(y_n,b_n)))/N;

@@ -1,17 +1,17 @@
 function [] = eyepattern(y_t,T,F,taille_visu,begin_offset,end_offset)
 %EYEPATTERN Affiche le diagramme de l'oeil.
 %
-% y_t : signal reçu (suréchantillonné).
-% T : durée d'un symbole [s].
-% F : facteur de suréchantillonnage.
-% taille_visu : nombre de symboles à visualiser.
-% begin_offset : nombre d'échantillons à écarter en début de signal.
-% end_offset : nombre d'échantillons à écarter en fin de signal.
+% y_t : signal reï¿½u (surï¿½chantillonnï¿½).
+% T : durï¿½e d'un symbole [s].
+% F : facteur de surï¿½chantillonnage.
+% taille_visu : nombre de symboles ï¿½ visualiser.
+% begin_offset : nombre d'ï¿½chantillons ï¿½ ï¿½carter en dï¿½but de signal.
+% end_offset : nombre d'ï¿½chantillons ï¿½ ï¿½carter en fin de signal.
 
-% Création du vecteur temps
+% Crï¿½ation du vecteur temps
 tvisu=0:T/F:taille_visu*T-T/F;
 
-% Troncature du signal à visualiser
+% Troncature du signal ï¿½ visualiser
 y_t=y_t(begin_offset:end-end_offset);
 
 % Visualisation sur un nombre entier de trajectoires
