@@ -67,13 +67,12 @@ t_y = [t_st (length(a_k)*T):T/F:(length(a_k)*T)+(L/(1/F))*T/F-T/F];
 %%  Question 2
 %   Mise en forme NRZ 
 filtre_nrz = gen_filters ('nrz', t_filtre, T, F, L, 0);
-%y_nrz = conv(s_t,filtre_nrz);
+y_nrz = conv(s_t,filtre_nrz);
 figure
 plot(t_filtre, filtre_nrz);grid on;xlabel('t(secondes)');ylabel('amplitude'); 
 %xlim([0 0.00005]);
 title('Réponse Impulsionnelle h_t - Filtre NRZ')
 [S_nrz f_nrz] = spectrum(filtre_nrz, T/F); 
-
 
 %  Mise en forme RZ 
 filtre_rz = gen_filters ('rz', t_filtre, T, F, L, 0);
