@@ -45,14 +45,14 @@
 clc; clear all; close all;
 N = 2048; 
 F = 16;
-D = 5^6;
+D = 1*10^6;
 L = 8;
 T = 1/D;    % Pour mod 2-PAM
 alpha = 0.5;
 EbNo = 30; % en dB
 
 [b_n m_emp sigma2_emp] = bit_generator(N);
-a_k = mapping_2PAM(b_n); % + cte para Question 5
+a_k = mapping_2PAM(b_n)+1; % + cte para Question 5
 s_t = expansion(F, a_k);
 t_st = 0:T/F:((length(a_k)*T)-T/F);
 
@@ -100,8 +100,10 @@ t_x = t_y;
 figure
 subplot(2,1,1)
 plot(t_x,x_t);grid on; title('Signal x_t');xlabel('t (secondes)');ylabel('Volts');
+xlim([0.002 0.00207]);
 subplot(2,1,2)
 plot(t_st,s_t);grid on; title('Signal s_t');xlabel('t (secondes)');ylabel('Volts');
+xlim([0.002 0.00207]);
 % OJO: Mostrar que las senales no son del mismo grande, pero en x_t los
 % ultimos valores son ceros
 
