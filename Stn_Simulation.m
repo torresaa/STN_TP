@@ -156,3 +156,16 @@ title('Constellation de y_k'); grid on;
 xlim([-2 2 ]);
 y_n = y_k > 0;
 TEB = (sum(xor(y_n,b_n)))/N;
+
+
+%% Question 14
+vect_TEB = [];
+for EbNo = 0:0.5:20
+   TEB =  PEB (EbNo,10^6,F,D,L,alpha);
+   vect_TEB = [vect_TEB TEB];
+end
+EbNo = 0:0.5:20;
+figure
+semilogy(EbNo,vect_TEB);
+hold on
+semilogy(EbNo,erfc(sqrt(2*EbNo)),'r');
