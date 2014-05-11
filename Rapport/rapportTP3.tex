@@ -14,16 +14,35 @@
 \maketitle
 
 \section{Géneration aléatoire des éléments binaires}
-
-
+Dans cette partie on veux generer une vecteur aleatoire $b_n$ de taille $N=2048$. Pour des raisons de modularité on a creé une fonction \emph{bit\_generator} qui prend comme paramétre $N$ et donne le vecteur de bits aléatoires $b_n$ plus ses moyenne ($m_{emp}$) et variance ($sigma2_{emp}$) empirique. 
 
 \section{Conversion des éléments binaires en symboles \emph{(mapping)}}
+Maintenant, il faut faire la conversion des élements binaires $b_n$ en symboles. En sachant que la modulation est 2-PAM on peut creer le vecteur $a_k$ en utilizant la relation
+\[ a_k = 2b_n - 1\]
+La fonction \emph{mapping\_2PAM } fait cette conversion. La costellation des symboles est dans la figure \ref{fig:sec1}.
+\begin{figure}[htb]
+	\begin{center}
+	%\includegraphics[scale=0.5]{Q2total}
+	\caption{Contellation des symboles $a_k$}
+	\label{fig:sec1}
+	\end{center}
+\end{figure} 
 
 \section{Conversion numérique - analogique}
 
 \subsection{Expansion}
+Jusqu'à maintenant les symboles sont des valeurs ponctuels dans le vecteur $a_k$. Pour "Mettre en forme" des symboles il faut les associer un signal analogique, ça n'est pas possible dans une simulateur numérique mais on peut simuler l'aspect d'un signal continu en utilisant des suréchantillonnage par symbole. Dans notre cas, le facteur de suréchantillonnage $F$ est $16$, c'est à dire que chaque symbole vas être représenté par la valeur du symbole plus $F-1=15$ zéros.
 
 \subsubsection*{Question 1}
+L'operation d'expansion est fait à la fonction \emph{expansion} et la figure \ref{fig:ques1} montre le résultat obtenu  en temps.
+
+\begin{figure}[htb]
+	\begin{center}
+	%\includegraphics[scale=0.5]{Q2total}
+	\caption{Expansion des symboles $a_k$}
+	\label{fig:ques1}
+	\end{center}
+\end{figure} 
 
 \subsection{Étude des filtres}
 
