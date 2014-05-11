@@ -45,14 +45,14 @@
 clc; clear all; close all;
 N = 2048; 
 F = 16;
-D = 10^6;
+D = 5^6;
 L = 8;
 T = 1/D;    % Pour mod 2-PAM
 alpha = 0.5;
 EbNo = 30; % en dB
 
 [b_n m_emp sigma2_emp] = bit_generator(N);
-a_k = mapping_2PAM(b_n) ; % + cte para Question 5
+a_k = mapping_2PAM(b_n); % + cte para Question 5
 s_t = expansion(F, a_k);
 t_st = 0:T/F:((length(a_k)*T)-T/F);
 
