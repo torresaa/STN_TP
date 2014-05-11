@@ -70,9 +70,9 @@ filtre_nrz = gen_filters ('nrz', t_filtre, T, F, L, 0);
 %y_nrz = conv(s_t,filtre_nrz);
 figure
 plot(t_filtre, filtre_nrz);grid on;xlabel('t(secondes)');ylabel('amplitude'); 
-xlim([0 0.00005]);
+%xlim([0 0.00005]);
 title('Réponse Impulsionnelle h_t - Filtre NRZ')
-[S_nrz f_nrz] = spectrum(filtre_nrz, t_filtre); 
+[S_nrz f_nrz] = spectrum(filtre_nrz, T/F); 
 
 
 %  Mise en forme RZ 
@@ -80,9 +80,9 @@ filtre_rz = gen_filters ('rz', t_filtre, T, F, L, 0);
 %y_rz = conv(s_t,filtre_rz);
 figure
 plot(t_filtre, filtre_rz);grid on;xlabel('t(secondes)');ylabel('amplitude'); 
-xlim([0 0.00005]);
+%xlim([0 0.00005]);
 title('Réponse Impulsionnelle h_t - Filtre RZ')
-[S_rz f_rz] = spectrum(filtre_rz, t_filtre);  
+[S_rz f_rz] = spectrum(filtre_rz, T/F);  
 
 
 %  Mise en forme SRRC 
@@ -90,9 +90,9 @@ filtre_srrc = gen_filters ('srrc', t_filtre, T, F, L, alpha);
 y_srrc = conv(s_t,filtre_srrc);
 figure
 plot(t_filtre, filtre_srrc);grid on;xlabel('t(secondes)');ylabel('amplitude'); 
-xlim([0 0.00005]);
+%xlim([0 0.00005]);
 title('Réponse Impulsionnelle h_t - Filtre SRRC')
-[S_srrc f_srrc] = spectrum(filtre_srrc, t_filtre); 
+[S_srrc f_srrc] = spectrum(filtre_srrc, T/F); 
 
 %%  Question 3
 x_t = y_srrc; % Par la suite, signal dans les ennonces
