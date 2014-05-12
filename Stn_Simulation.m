@@ -122,8 +122,8 @@ psd(spectrum.welch,x_t,'Fs',D);
 %%  Question 6
 % Responder pregunta teorica 
 sigma2_x = var(x_t);
-sigma2_n = F*sigma2_x/(10^(EbNo/10));
-n_t = sigma2_n*randn(1,length(x_t));
+sigma2_n = F*sigma2_x/(2*(10^(EbNo/10)));
+n_t = sqrt(sigma2_n)*randn(1,length(x_t));
 r_t = x_t + n_t;
 
 %% Question 7: Responder pregunta teorica
@@ -168,6 +168,9 @@ TEB = (sum(xor(y_n,b_n)))/N;
 % end
 % EbNo = 0:0.5:20;
 % figure
-% semilogy(EbNo,vect_TEB);
+% loglog(EbNo,vect_TEB);
 % hold on
-% semilogy(EbNo,erfc(sqrt(2*EbNo)),'r');
+% loglog(EbNo,erfc(sqrt(2*EbNo)),'r');
+% grid on;
+% legend('Courbe empirique','Courbe theorique')
+% xlabel('EbNo');ylabel('Pe');title('BER')
