@@ -54,7 +54,7 @@ Por le système de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
 
 D'autre part, ce qui concerne à la réponse fréquentielle des filtres on peut les regarder à la partie (b) de chaque figure. Pour les filtres rectangulaires on estime sa bande passante grâce au lobe principal (ce qui porte la plupart d'information), donc le filtre RZ a une bande passante deux foies ($R=2D$) plus grand que le filtre NRZ ($R=D$). Le filtre SRRC a la bande passante plus petite que les autres à cause du coefficient d'excès de bande $\alpha$ qui est $0.5$, on parlera sur cette relation plus tard.\\ \\
 
-Quand on change le débit binaire la réponse impulsionnelle et fréquentielle change. Si le débit est plus petit $T_b$ augmente et la bande passante diminue. Si c'est le case contraire $T_b$ diminue et la bande passante augmente. Dans les figures \ref{fig:nrz15M}, \ref{fig:rz15M} et \ref{fig:srrc15M} on voie une exemple de cas où $T_b$ augmente à 15Mbit/s.
+Quand on change le débit binaire la réponse impulsionnelle et fréquentielle change. Si le débit est plus petit $T_b$ augmente et la bande passante diminue. Si c'est le case contraire $T_b$ diminue et la bande passante augmente. Dans les figures \ref{fig:nrz15M}, \ref{fig:rz15M} et \ref{fig:srrc15M} on voie une exemple de cas où $T_b$ augmente à 15Mbit/s.\\ 
 
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
@@ -158,6 +158,8 @@ Quand on change le débit binaire la réponse impulsionnelle et fréquentielle c
 	\caption{Réponse impulsionnelles et fréquentielles du filtre SRRC - $D=15 Mbit/s ; \alpha =0.5$.}
 	\label{fig:srrc15M}
 \end{figure}
+
+\newpage
 
 Maintenant on va parler sur les changements du coefficient d'excès de bande $\alpha$ pour les filtre SRRC. Dans les figures \ref{fig:srrc15M} et \ref{fig:srrc1M} il est toujours $0.5$ mais pour les figures \ref{fig:srrc1M_alp0} et \ref{fig:srrc1M_alp1} $\alpha$ est 0 et 1. Quand $\alpha=0$ la bande passante est la moitié que pour $\alpha = 1$ où $R=D$. ils sont les cas critique pour les filtres SRRC.       
 
@@ -292,21 +294,21 @@ Le filtre adapté est le filtre utilisé pour détecter un signal connu dans la 
 La forme du filtre adapté est la version inversé et decalé du filtre de mise en forme. C'est comme cela car on à besoin de maximiser la RSB. Cela a été fait via la commande \emph{fliplr}.
 \begin{figure}
 	\begin{center}
-	\includegraphics[scale=0.5]{Q8-1.pdf}
+	\includegraphics[scale=0.5]{Q8-1-crop.pdf}
 	\caption{Filtres de mise en forme et adapté}
 	\label{fig:ques8-1}
 	\end{center}
 \end{figure} 
 \begin{figure}
 	\begin{center}
-	\includegraphics[scale=0.5]{Q8-2.pdf}
+	\includegraphics[scale=0.5]{Q8-2-crop.pdf}
 	\caption{Filtres de mise en forme et adapté}
 	\label{fig:ques8-2}
 	\end{center}
 \end{figure} 
 \begin{figure}
 	\begin{center}
-	\includegraphics[scale=0.5]{Q8-3.pdf}
+	\includegraphics[scale=0.5]{Q8-3-crop.pdf}
 	\caption{Filtres de mise en forme et adapté}
 	\label{fig:ques8-3}
 	\end{center}
@@ -321,13 +323,13 @@ Comme on peut regarder dans la figure \ref{fig:q10E}, c'est évident l'effet du 
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
-  		\includegraphics[width=1\linewidth]{Q10-EbNo10.pdf}
+  		\includegraphics[width=1\linewidth]{Q10-EbNo10-crop.pdf}
   		\caption{Diagramme de l'oeil pour RSB 10dB}
   		\label{fig:q10E10}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
-  		\includegraphics[width=1\linewidth]{Q10-EbNo20.pdf}
+  		\includegraphics[width=1\linewidth]{Q10-EbNo20-crop.pdf}
   		\caption{Diagramme de l'oeil pour RSB 20dB}
   		\label{fig:q10E20}
 	\end{subfigure}
@@ -339,13 +341,13 @@ Comme on peut regarder dans la figure \ref{fig:q10E}, c'est évident l'effet du 
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
-  		\includegraphics[width=1\linewidth]{Q10-alfa025.pdf}
+  		\includegraphics[width=1\linewidth]{Q10-alfa025-crop.pdf}
   		\caption{Diagramme de l'oeil pour $\alpha$ = 0.25}
   		\label{fig:q10a025}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
-  		\includegraphics[width=1\linewidth]{Q10-alfa075.pdf}
+  		\includegraphics[width=1\linewidth]{Q10-alfa075-crop.pdf}
   		\caption{Diagramme de l'oeil pour $\alpha$ = 0.75}
   		\label{fig:q10a075}
 	\end{subfigure}
@@ -356,13 +358,13 @@ Comme on peut regarder dans la figure \ref{fig:q10E}, c'est évident l'effet du 
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
-  		\includegraphics[width=1\linewidth]{Q10-EbNo20.pdf}
+  		\includegraphics[width=1\linewidth]{Q10-EbNo20-crop.pdf}
   		\caption{Diagramme de l'oeil pour L = 8}
   		\label{fig:q10l16}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
-  		\includegraphics[width=1\linewidth]{Q10-L64.pdf}
+  		\includegraphics[width=1\linewidth]{Q10-L64-crop.pdf}
   		\caption{Diagramme de l'oeil pour L = 64}
   		\label{fig:q10l64}
 	\end{subfigure}
@@ -372,13 +374,13 @@ Comme on peut regarder dans la figure \ref{fig:q10E}, c'est évident l'effet du 
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
-  		\includegraphics[width=1\linewidth]{Q10-Tsur2.pdf}
+  		\includegraphics[width=1\linewidth]{Q10-Tsur2-crop.pdf}
   		\caption{Diagramme de l'oeil pour T = $\frac{1}{2*D}$}
   		\label{fig:q10t2}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
-  		\includegraphics[width=1\linewidth]{Q10-EbNo20.pdf}
+  		\includegraphics[width=1\linewidth]{Q10-EbNo20-crop.pdf}
   		\caption{Diagramme de l'oeil pour T = $\frac{1}{D}$}
   		\label{fig:q10t1}
 	\end{subfigure}
@@ -397,7 +399,7 @@ C'est très important d'avoir de la synchronisation dans un système de transmis
 Dans la suite de la chaîne de communication, une fois que les symboles $y_k$ sont reçus il faut prendre un seuil de décision. À l'aide la figure \ref{fig:q13} on voit que le seuil optimal est en \emph{0}. 
 \begin{figure}
 	\begin{center}
-	\includegraphics[scale=0.5]{Q13.pdf}
+	\includegraphics[scale=1]{Q13-crop.pdf}
 	\caption{Constellation des $y_k$.}
 	\label{fig:q13}
 	\end{center}
@@ -412,7 +414,7 @@ Dans la figure \ref{fig:q14} on trouve les deux courbes de \emph{BER}. Ici la co
 
 \begin{figure}
 	\begin{center}
-	\includegraphics[scale=0.5]{Q14-BER.pdf}
+	\includegraphics[scale=1]{Q14-BER-crop.pdf}
 	\caption{Constellation des $y_k$.}
 	\label{fig:q14}
 	\end{center}
