@@ -52,7 +52,7 @@ alpha = 0.5;
 EbNo = 30; % en dB
 
 [b_n m_emp sigma2_emp] = bit_generator(N);
-a_k = mapping_2PAM(b_n)+1; % + cte para Question 5
+a_k = mapping_2PAM(b_n); % + cte para Question 5
 s_t = expansion(F, a_k);
 t_st = 0:T/F:((length(a_k)*T)-T/F);
 
@@ -123,7 +123,7 @@ psd(spectrum.welch,x_t,'Fs',D);
 % Responder pregunta teorica 
 sigma2_x = var(x_t);
 sigma2_n = F*sigma2_x/(10^(EbNo/10));
-n_t = sigma2_n*randn(1,length(x_t));
+n_t = sqrt(sigma2_n)*randn(1,length(x_t));% OJO sigma_n, pas la variance
 r_t = x_t + n_t;
 
 %% Question 7: Responder pregunta teorica
@@ -171,3 +171,5 @@ figure
 semilogy(EbNo,vect_TEB);
 hold on
 semilogy(EbNo,erfc(sqrt(2*EbNo)),'r');
+grid on;
+legend('Courbe empirique','');
