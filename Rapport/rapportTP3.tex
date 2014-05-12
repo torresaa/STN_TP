@@ -317,7 +317,7 @@ La forme du filtre adapté est la version inversé et decalé du filtre de mise 
 Comme on peut regarder dans les figures \ref{fig:ques8-1}, \ref{fig:ques8-2} et \ref{fig:ques8-3}, la sortie du filtre adapté est maximum dans le temps de bit et nul dans les multiples de ce temps, c'est pour cela qu'on vérifie qu'on peut transmettre sans IES.
 
 \subsubsection*{Question 10}
-Comme on peut regarder dans la figure \ref{fig:q10E}, c'est évident l'effet du bruit dans le diagramme de l'oeil, si on augmente la \emph{RSB} l'oeil sera plus ouvert.
+Comme on peut regarder dans la figure \ref{fig:q10E}, c'est évident l'effet du bruit dans le diagramme de l'oeil, si on augmente la \emph{RSB} l'oeil sera plus ouvert. Pour la figure \ref{fig:q10a} on peut regarder que le diagramme change de façon que si on augmente le $\alpha$, l'oeil sera plus ouvert. Dans la figure \ref{fig:q10l} on observe que le paramètre \emph{L} n'affecte pas trop le diagramme de l'oeil. Finalement, dans la figure \ref{fig:q10t} l'effet du paramètre \emph{T} fait que les temps de symboles (où se trouve le maximum d'un symbole) soient décales.
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
@@ -332,41 +332,91 @@ Comme on peut regarder dans la figure \ref{fig:q10E}, c'est évident l'effet du 
   		\label{fig:q10E20}
 	\end{subfigure}
 		%
-	\caption{Différentes diagrammes de l'oeil à differente \emph{RSB}.}
+	\caption{Différentes diagrammes de l'oeil à différentes \emph{RSB}.}
 	\label{fig:q10E}
 \end{figure}
 
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
-  		\includegraphics[width=1\linewidth]{Q10-EbNo10.pdf}
-  		\caption{Diagramme de l'oeil pour RSB 10dB}
-  		\label{fig:q10E10}
+  		\includegraphics[width=1\linewidth]{Q10-alfa025.pdf}
+  		\caption{Diagramme de l'oeil pour $\alpha$ = 0.25}
+  		\label{fig:q10a025}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{Q10-alfa075.pdf}
+  		\caption{Diagramme de l'oeil pour $\alpha$ = 0.75}
+  		\label{fig:q10a075}
+	\end{subfigure}
+	\caption{Différentes diagrammes de l'oeil à différentes $\alpha$.}
+	\label{fig:q10a}
+\end{figure} 
+
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{Q10-EbNo20.pdf}
+  		\caption{Diagramme de l'oeil pour L = 8}
+  		\label{fig:q10l16}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{Q10-L64.pdf}
+  		\caption{Diagramme de l'oeil pour L = 64}
+  		\label{fig:q10l64}
+	\end{subfigure}
+	\caption{Différentes diagrammes de l'oeil à différentes valeurs de L.}
+	\label{fig:q10l}
+\end{figure} 
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{Q10-Tsur2.pdf}
+  		\caption{Diagramme de l'oeil pour T = $\frac{1}{2*D}$}
+  		\label{fig:q10t2}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
   		\includegraphics[width=1\linewidth]{Q10-EbNo20.pdf}
-  		\caption{Diagramme de l'oeil pour RSB 20dB}
-  		\label{fig:q10E20}
+  		\caption{Diagramme de l'oeil pour T = $\frac{1}{D}$}
+  		\label{fig:q10t1}
 	\end{subfigure}
-	\caption{Différentes diagrammes de l'oeil à differente \emph{RSB}.}
-	\label{fig:q10E}
+	\caption{Différentes diagrammes de l'oeil à différentes $\alpha$.}
+	\label{fig:q10t}
 \end{figure} 
 
 
 
 \subsection{Décimation}
 \subsubsection*{Question 11}
+Après le filtre adapté il faut prendre les valeurs $y_k$ qui conviennent. Comme c'était mentionné au-dessus le but du filtre adapté c'est de maximiser le \emph{RSB}, donc c'est pour cela qu'en ayant deux signaux de la même longueur, alors le résultat maximum de la convolution se trouvera à la valeur de la longueur. Dans ce cas sera tous les \emph{LT}. 
 \subsubsection*{Question 12}
-
-\section{Prise de décision \emph{(demapping)}}
+C'est très important d'avoir de la synchronisation dans un système de transmission, car si ce n'est pas comme cela on échantillonnera le signal reçu dans le temps invalide et cela puisse arriver parce qu'un canal à \emph{BBG} ajoute aussi un déphasage au signal. Finalement, si c'est le cas, le filtre adapté ne maximisera pas le \emph{RSB} dans le temps de symbole.\section{Prise de décision \emph{(demapping)}}
 \subsubsection*{Question 13}
+Dans la suite de la chaîne de communication, une fois que les symboles $y_k$ sont reçus il faut prendre un seuil de décision. À l'aide la figure \ref{fig:q13} on voit que le seuil optimal est en \emph{0}. 
+\begin{figure}
+	\begin{center}
+	\includegraphics[scale=0.5]{Q13.pdf}
+	\caption{Constellation des $y_k$.}
+	\label{fig:q13}
+	\end{center}
+\end{figure}  
 
 \section{Calcul du taux d'erreur binaire}
-
+Après le seuil optimal il faut comparer et trouver combien d'erreurs on a commit dans la transmission des symboles. Donc c'est avec le \emph{TEB} dans lequel on calcule le rapport entre le nombre d'éléments binaires faux et le nombre d'éléments binaires transmis.
 \section{Mesures de performances}
+Finalement, c'est important mesurer la chaîne de transmission. C'est fait avec la relation entre le \emph{RSB} et la probabilité d'erreur.
 \subsubsection*{Question 14}
+Dans la figure \ref{fig:q14} on trouve les deux courbes de \emph{BER}. Ici la courbe empirique arrive qu'à 7dB de \emph{EbNo} car pour pouvoir continuer c'est neccesaire d'envoyer plus qu'un million de bits et étant donné les limitations de mémoire c'était impossible. L'important est que c'est évident que la courbe empirique est pire que la théorique, quelque chose qui est attendu, car la courbe théorique est fait à partir d'estimations et méthodes statistiques qui ne prennent pas certains aspects de la chaîne de transmission. Enfin, la courbe empirique doit être toujours pire que la théorique sauf quand on utilise des codes détecteurs et correcteurs d'erreurs ainsi que de la codification de canal.
 
+\begin{figure}
+	\begin{center}
+	\includegraphics[scale=0.5]{Q14-BER.pdf}
+	\caption{Constellation des $y_k$.}
+	\label{fig:q14}
+	\end{center}
+\end{figure}  
 %\begin{figure}[htb]
 %\begin{center}
 %\includegraphics[scale=0.5]{Q2total}
