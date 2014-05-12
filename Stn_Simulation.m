@@ -49,7 +49,7 @@ D = 1*10^6;
 L = 8;
 T = 1/D;    % Pour mod 2-PAM
 alpha = 0.5;
-EbNo = 30; % en dB
+EbNo = 20; % en dB
 
 [b_n m_emp sigma2_emp] = bit_generator(N);
 a_k = mapping_2PAM(b_n); % + cte para Question 5
@@ -145,7 +145,7 @@ plot(t_filtre,filtre_srrc);grid on;title('Filtre de mise en forme');
 %% Question 9
 % nombrar variables
 y_t = conv(r_t,h_r);
-eyepattern(y_t,T,F,3,1,1);
+eyepattern(y_t,T,F,3,1,1)
 
 %% Question 10-11-12
 y_t = y_t(((length(y_t)-length(s_t))/2):end-((length(y_t)-length(s_t))/2)-1);
@@ -173,3 +173,16 @@ hold on
 semilogy(EbNo,erfc(sqrt(2*EbNo)),'r');
 grid on;
 legend('Courbe empirique','');
+% vect_TEB = [];
+% for EbNo = 0:0.5:20
+%    TEB =  PEB (EbNo,10^6,F,D,L,alpha);
+%    vect_TEB = [vect_TEB TEB];
+% end
+% EbNo = 0:0.5:20;
+% figure
+% loglog(EbNo,vect_TEB);
+% hold on
+% loglog(EbNo,erfc(sqrt(2*EbNo)),'r');
+% grid on;
+% legend('Courbe empirique','Courbe theorique')
+% xlabel('EbNo');ylabel('Pe');title('BER')

@@ -6,6 +6,7 @@
     \usepackage{graphicx}
     \usepackage{anysize}
     \usepackage{amsfonts}
+    \usepackage{subcaption}
     \marginsize{2cm}{2cm}{2cm}{2cm}
     \title{Simulation d'une chaîne de transmission numérique sur canal gaussien à bande limitée\newline [Rapport]}
     \author{Jorge GULFO MONSALVE\\Aquiles TORRES ALVAREZ}
@@ -22,7 +23,7 @@ Maintenant, il faut faire la conversion des élements binaires $b_n$ en symboles
 La fonction \emph{mapping\_2PAM } fait cette conversion. La costellation des symboles est dans la figure \ref{fig:sec1}.
 \begin{figure}[htb]
 	\begin{center}
-	%\includegraphics[scale=0.5]{Q2total}
+	\includegraphics[scale=1]{contesllation_a_k-crop.pdf}
 	\caption{Contellation des symboles $a_k$}
 	\label{fig:sec1}
 	\end{center}
@@ -38,7 +39,7 @@ L'operation d'expansion est fait à la fonction \emph{expansion} et la figure \r
 
 \begin{figure}[htb]
 	\begin{center}
-	%\includegraphics[scale=0.5]{Q2total}
+	\includegraphics[scale=1]{expansion-crop.pdf}
 	\caption{Expansion des symboles $a_k$}
 	\label{fig:ques1}
 	\end{center}
@@ -47,12 +48,202 @@ L'operation d'expansion est fait à la fonction \emph{expansion} et la figure \r
 \subsection{Étude des filtres}
 
 \subsubsection*{Question 2}
+\begin{figure}[htb]
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{impul_nrz-crop.pdf}
+  		\caption{Réponse impulsionnelle}
+  		\label{fig:nrz_impul1M}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{frec_nrz-crop.pdf}
+  		\caption{Réponse fréquentielle}
+  		\label{fig:nrz_frec1M}
+	\end{subfigure}%
+	\caption{Réponse impulsionnelles et fréquentielles du filtre NRZ - $D=1 Mbit/s$}
+	\label{fig:nrz1M}
+\end{figure} 
+
+\begin{figure}[htb]
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{impul_rz-crop.pdf}
+  		\caption{Réponse impulsionnelle}
+  		\label{fig:rz_impul1M}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{frec_rz-crop.pdf}
+  		\caption{Réponse fréquentielle}
+  		\label{fig:rz_frec1M}
+	\end{subfigure}%
+	\caption{Réponse impulsionnelles et fréquentielles du filtre RZ - $D=1 Mbit/s$}
+	\label{fig:rz1M}
+\end{figure}
+
+\begin{figure}[htb]
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{impul_srrc-crop.pdf}
+  		\caption{Réponse impulsionnelle}
+  		\label{fig:srrc_impul1M}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{frec_srrc-crop.pdf}
+  		\caption{Réponse fréquentielle}
+  		\label{fig:srrc_frec1M}
+	\end{subfigure}%
+	\caption{Réponse impulsionnelles et fréquentielles du filtre SRRC - $D=15 Mbit/s ; \alpha =0.5$.}
+	\label{fig:srrc1M}
+\end{figure} 
+
+%------------------15Mb
+\begin{figure}[htb]
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{impul_nrz_15-crop.pdf}
+  		\caption{Réponse impulsionnelle}
+  		\label{fig:nrz_impul15M}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{frec_nrz_15-crop.pdf}
+  		\caption{Réponse fréquentielle}
+  		\label{fig:nrz_frec15M}
+	\end{subfigure}%
+	\caption{Réponse impulsionnelles et fréquentielles du filtre NRZ - $D=15 Mbit/s$}
+	\label{fig:nrz1M}
+\end{figure} 
+
+\begin{figure}[htb]
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{impul_rz_15-crop.pdf}
+  		\caption{Réponse impulsionnelle}
+  		\label{fig:rz_impul15M}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{frec_rz_15-crop.pdf}
+  		\caption{Réponse fréquentielle}
+  		\label{fig:rz_frec15M}
+	\end{subfigure}%
+	\caption{Réponse impulsionnelles et fréquentielles du filtre RZ - $D=15 Mbit/s$}
+	\label{fig:rz15M}
+\end{figure}
+
+\begin{figure}[htb]
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{impul_srrc_15-crop.pdf}
+  		\caption{Réponse impulsionnelle}
+  		\label{fig:srrc_impul15M}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{frec_srrc_15-crop.pdf}
+  		\caption{Réponse fréquentielle}
+  		\label{fig:srrc_frec15M}
+	\end{subfigure}%
+	\caption{Réponse impulsionnelles et fréquentielles du filtre SRRC - $D=15 Mbit/s ; \alpha =0.5$.}
+	\label{fig:srrc15M}
+\end{figure}
+
+%-------------------1M alpha 0
+\begin{figure}[htb]
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{impul_srrc_alpha_0-crop.pdf}
+  		\caption{Réponse impulsionnelle}
+  		\label{fig:srrc_impul15M_alp0}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{frec_srrc_alpha_0-crop.pdf}
+  		\caption{Réponse fréquentielle}
+  		\label{fig:srrc_frec15M_alp0}
+	\end{subfigure}%
+	\caption{Réponse impulsionnelles et fréquentielles du filtre SRRC - $D=15 Mbit/s ; \alpha =0$.}
+	\label{fig:srrc15M_alp0}
+\end{figure}
+
+%-------------------1M alpha 1
+\begin{figure}[htb]
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{impul_srrc_alpha_1-crop.pdf}
+  		\caption{Réponse impulsionnelle}
+  		\label{fig:srrc_impul15M_alp1}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{frec_srrc_alpha_1-crop.pdf}
+  		\caption{Réponse fréquentielle}
+  		\label{fig:srrc_frec15M_alp1}
+	\end{subfigure}%
+	\caption{Réponse impulsionnelles et fréquentielles du filtre SRRC - $D=15 Mbit/s ; \alpha =1$.}
+	\label{fig:srrc15M_alp1}
+\end{figure}
+  
 
 \subsection{Mise en forme des symboles}
 
 \subsubsection*{Question 3}
+
+\begin{figure}[htb]
+	\begin{center}
+	\includegraphics[scale=1]{question3-crop.pdf}
+	\caption{Mise en forme des symboles $a_k$}
+	\label{fig:ques3}
+	\end{center}
+\end{figure} 
+
 \subsubsection*{Question 4}
+
+\begin{figure}[htb]
+	\begin{center}
+	\includegraphics[scale=1]{welch_s_t-crop.pdf}
+	\caption{Densité spectrale du puissance de $s_t$}
+	\label{fig:ques4_st}
+	\end{center}
+\end{figure} 
+
+\begin{figure}[htb]
+	\begin{center}
+	\includegraphics[scale=1]{welch_x_t-crop.pdf}
+	\caption{Densité spectrale du puissance de $x_t$}
+	\label{fig:ques4_xt}
+	\end{center}
+\end{figure} 
+
+
 \subsubsection*{Question 5}
+
+\begin{figure}[htb]
+	\begin{center}
+	\includegraphics[scale=1]{question3_noncentree-crop.pdf}
+	\caption{Mise en forme des symboles $a_k$ non-centrés.}
+	\label{fig:ques5_q3}
+	\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+	\begin{center}
+	\includegraphics[scale=1]{welch_s_t_noncentree-crop.pdf}
+	\caption{Densité spectrale du puissance de $s_t$ non-centrée.}
+	\label{fig:ques5_Q4st}
+	\end{center}
+\end{figure} 
+
+\begin{figure}[htb]
+	\begin{center}
+	\includegraphics[scale=1]{welch_x_t_noncentree-crop.pdf}
+	\caption{Densité spectrale du puissance de $x_t$ non-centrée.}
+	\label{fig:ques5_Q4xt}
+	\end{center}
+\end{figure}
 
 \section{Ajout du bruit blanc gaussien}
 \subsubsection*{Question 6}
