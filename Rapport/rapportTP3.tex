@@ -15,10 +15,10 @@
 \maketitle
 
 \section{Géneration aléatoire des éléments binaires}
-Dans cette partie on veux generer une vecteur aleatoire $b_n$ de taille $N=2048$. Pour des raisons de modularité on a creé une fonction \emph{bit\_generator} qui prend comme paramétre $N$ et donne le vecteur de bits aléatoires $b_n$ plus ses moyenne ($m_{emp}$) et variance ($sigma2_{emp}$) empirique. 
+Dans cette partie on veut générer un vecteur aléatoire $b_n$ de taille $N=2048$. Pour des raisons de modularité on a créé une fonction \emph{bit\_generator} qui prend comme paramètre $N$ et donne le vecteur de bits aléatoires $b_n$ plus ses moyenne ($m_{emp}$) et variance ($sigma2_{emp}$) empirique. 
 
 \section{Conversion des éléments binaires en symboles \emph{(mapping)}}
-Maintenant, il faut faire la conversion des élements binaires $b_n$ en symboles. En sachant que la modulation est 2-PAM on peut creer le vecteur $a_k$ en utilizant la relation
+Maintenant, il faut faire la conversion des éléments binaires $b_n$ en symboles. En sachant que la modulation est 2-PAM on peut creér le vecteur $a_k$ en utilisant la relation.
 \[ a_k = 2b_n - 1\]
 La fonction \emph{mapping\_2PAM } fait cette conversion. La costellation des symboles est dans la figure \ref{fig:sec1}.
 \begin{figure}
@@ -32,7 +32,7 @@ La fonction \emph{mapping\_2PAM } fait cette conversion. La costellation des sym
 \section{Conversion numérique - analogique}
 
 \subsection{Expansion}
-Jusqu'à maintenant les symboles sont des valeurs ponctuels dans le vecteur $a_k$. Pour "Mettre en forme" des symboles il faut les associer un signal analogique, ça n'est pas possible dans une simulateur numérique mais on peut simuler l'aspect d'un signal continu en utilisant des suréchantillonnage par symbole. Dans notre cas, le facteur de suréchantillonnage $F$ est $16$, c'est à dire que chaque symbole vas être représenté par la valeur du symbole plus $F-1=15$ zéros.
+Jusqu'à maintenant les symboles sont des valeurs ponctuels dans le vecteur $a_k$. Pour "Mettre en forme" des symboles il faut les associer un signal analogique, ça n'est pas possible dans une simulateur numérique , mais on peut simuler l'aspect d'un signal continu en utilisant des sur-échantillonnage par symbole. Dans notre cas, le facteur de sur-échantillonnage $F$ est $16$, c'est-à-dire que chaque symbole vas être représenté par la valeur du symbole plus $F-1=15$ zéros.
 
 \subsubsection*{Question 1}
 L'operation d'expansion est fait à la fonction \emph{expansion} et la figure \ref{fig:ques1} montre le résultat obtenu  en temps.
@@ -48,9 +48,13 @@ L'operation d'expansion est fait à la fonction \emph{expansion} et la figure \r
 \subsection{Étude des filtres}
 
 \subsubsection*{Question 2}
-Jusqu'ici on a les symboles expansés $a_k$. On ne peut pas transmettre cette signal, premièrement il faut le donner une "forme". Cela est le travail des filtres d'emission, ils donnent au chaine de bits à transmettre ses formes selon le type de modulation et les paramétres de transmission.
-Nous sommes intéressés par les filtres rectagulaires (NRZ et RZ) et les filtres de cosinus surélevé (SRRC), donc on fera premiérment une analyse en temps et en fréquence de ces filtres de mise en forme.
-Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fréquentielle des filtres NRZ, RZ et SRRC se trouve dans les figures \ref{fig:nrz1M}, \ref{fig:rz1M} et \ref{fig:srrc1M} respectivement.
+Jusqu'ici on a les symboles expansés $a_k$. On ne peut pas transmettre cet signal, premièrement il faut le donner une "forme". Cela est le travail des filtres d'émission, ils donnent à la chaine de bits à transmettre ses formes selon le type de modulation et les paramètres de transmission. Nous sommes intéressés par les filtres rectangulaires (NRZ et RZ) et les filtres de cosinus surélevé (SRRC), donc on fera premièrment une analyse temporelle et en fréquence de ces filtres de mise en forme.\\ \\
+
+Por le système de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fréquentielle des filtres NRZ, RZ et SRRC se trouvent dans les figures \ref{fig:nrz1M}, \ref{fig:rz1M} et \ref{fig:srrc1M} respectivement. Tous les réponses impulsionnelles ont une durée de $8 t_b$ comme on a fixé ($L=8$), en plus dans le case des filtres rectangulaires $T_b$ est évident ($T= 1/D$ pour NRZ et $T/2$ pour RZ) et pour le filtre de cosinus surélevé on peut regarde que le signal est 0 chaque $T$. \\ \\
+
+D'autre part, ce qui concerne à la réponse fréquentielle des filtres on peut les regarder à la partie (b) de chaque figure. Pour les filtres rectangulaires on estime sa bande passante grâce au lobe principal (ce qui porte la plupart d'information), donc le filtre RZ a une bande passante deux foies ($R=2D$) plus grand que le filtre NRZ ($R=D$). Le filtre SRRC a la bande passante plus petite que les autres à cause du coefficient d'excès de bande $\alpha$ qui est $0.5$, on parlera sur cette relation plus tard.\\ \\
+
+Quand on change le débit binaire la réponse impulsionnelle et fréquentielle change. Si le débit est plus petit $T_b$ augmente et la bande passante diminue. Si c'est le case contraire $T_b$ diminue et la bande passante augmente. Dans les figures \ref{fig:nrz15M}, \ref{fig:rz15M} et \ref{fig:srrc15M} on voie une exemple de cas où $T_b$ augmente à 15Mbit/s.
 
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
@@ -99,7 +103,7 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
   		\caption{Réponse fréquentielle}
   		\label{fig:srrc_frec1M}
 	\end{subfigure}%
-	\caption{Réponse impulsionnelles et fréquentielles du filtre SRRC - $D=15 Mbit/s ; \alpha =0.5$.}
+	\caption{Réponse impulsionnelles et fréquentielles du filtre SRRC - $D=1 Mbit/s ; \alpha =0.5$.}
 	\label{fig:srrc1M}
 \end{figure} 
 
@@ -118,7 +122,7 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
   		\label{fig:nrz_frec15M}
 	\end{subfigure}%
 	\caption{Réponse impulsionnelles et fréquentielles du filtre NRZ - $D=15 Mbit/s$}
-	\label{fig:nrz1M}
+	\label{fig:nrz15M}
 \end{figure} 
 
 \begin{figure}
@@ -155,13 +159,15 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
 	\label{fig:srrc15M}
 \end{figure}
 
+Maintenant on va parler sur les changements du coefficient d'excès de bande $\alpha$ pour les filtre SRRC. Dans les figures \ref{fig:srrc15M} et \ref{fig:srrc1M} il est toujours $0.5$ mais pour les figures \ref{fig:srrc1M_alp0} et \ref{fig:srrc1M_alp1} $\alpha$ est 0 et 1. Quand $\alpha=0$ la bande passante est la moitié que pour $\alpha = 1$ où $R=D$. ils sont les cas critique pour les filtres SRRC.       
+
 %-------------------1M alpha 0
 \begin{figure}[htb]
 	\begin{subfigure}{.5\textwidth}
   		\centering
   		\includegraphics[width=1\linewidth]{impul_srrc_alpha_0-crop.pdf}
   		\caption{Réponse impulsionnelle}
-  		\label{fig:srrc_impul15M_alp0}
+  		\label{fig:srrc_impul1M_alp0}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
@@ -169,8 +175,8 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
   		\caption{Réponse fréquentielle}
   		\label{fig:srrc_frec15M_alp0}
 	\end{subfigure}%
-	\caption{Réponse impulsionnelles et fréquentielles du filtre SRRC - $D=15 Mbit/s ; \alpha =0$.}
-	\label{fig:srrc15M_alp0}
+	\caption{Réponse impulsionnelles et fréquentielles du filtre SRRC - $D=1bit/s ; \alpha =0$.}
+	\label{fig:srrc1M_alp0}
 \end{figure}
 
 %-------------------1M alpha 1
@@ -179,16 +185,16 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
   		\centering
   		\includegraphics[width=1\linewidth]{impul_srrc_alpha_1-crop.pdf}
   		\caption{Réponse impulsionnelle}
-  		\label{fig:srrc_impul15M_alp1}
+  		\label{fig:srrc_impul1M_alp1}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
   		\includegraphics[width=1\linewidth]{frec_srrc_alpha_1-crop.pdf}
   		\caption{Réponse fréquentielle}
-  		\label{fig:srrc_frec15M_alp1}
+  		\label{fig:srrc_frec1M_alp1}
 	\end{subfigure}%
-	\caption{Réponse impulsionnelles et fréquentielles du filtre SRRC - $D=15 Mbit/s ; \alpha =1$.}
-	\label{fig:srrc15M_alp1}
+	\caption{Réponse impulsionnelles et fréquentielles du filtre SRRC - $D=1Mbit/s ; \alpha =1$.}
+	\label{fig:srrc1M_alp1}
 \end{figure}
   
 
@@ -204,7 +210,13 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
 	\end{center}
 \end{figure} 
 
+La figure \ref{fig:ques3} montre seulement la partie finale des signals $x_t$ et $s_t$ a fin de faire la comparaison de la durée. La signal $x_t$ est plus longue grâce à le filtrage de mise en forme et la durée du filtre. Dans notre cas le filtre a une durée de $8T_b$ et cela fait le décalage temporel du signal $x_t$ par rapport à $s_t$.  
+%%----corecteur
+
 \subsubsection*{Question 4}
+La figure \ref{fig:ques4_st} montre l'spectre du signal $x_t$ et la figure \ref{fig:ques4_xt} pareil pour $s_t$. La signal modulé $x_t$ a toute la puissance dans la bande passante $R=D$, c'est la raison pour préférer ce type de modulation pour les transmissions de bande limitée.\\
+
+Un autre estimateur de la densité spectral du puissance est la transforme de Fourier de l'autocorretation du signal, mais on ne l'implémente pas pour des raisons d'affichage.
 
 \begin{figure}[htb]
 	\begin{center}
@@ -224,6 +236,7 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
 
 
 \subsubsection*{Question 5}
+Quand les symboles sont non centrées, $x_t$ et $s_t$ dans la figure \ref{fig:ques5_q3}, la densité spectrale du puissance des signals $s_t$ et $x_t$ aura des pics comme on peut regarder dans la figure \ref{fig:ques5_Q4st} et \ref{fig:ques5_Q4xt}.
 
 \begin{figure}[htb]
 	\begin{center}
