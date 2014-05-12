@@ -21,7 +21,7 @@ Dans cette partie on veux generer une vecteur aleatoire $b_n$ de taille $N=2048$
 Maintenant, il faut faire la conversion des élements binaires $b_n$ en symboles. En sachant que la modulation est 2-PAM on peut creer le vecteur $a_k$ en utilizant la relation
 \[ a_k = 2b_n - 1\]
 La fonction \emph{mapping\_2PAM } fait cette conversion. La costellation des symboles est dans la figure \ref{fig:sec1}.
-\begin{figure}[htb]
+\begin{figure}
 	\begin{center}
 	\includegraphics[scale=1]{contesllation_a_k-crop.pdf}
 	\caption{Contellation des symboles $a_k$}
@@ -37,7 +37,7 @@ Jusqu'à maintenant les symboles sont des valeurs ponctuels dans le vecteur $a_k
 \subsubsection*{Question 1}
 L'operation d'expansion est fait à la fonction \emph{expansion} et la figure \ref{fig:ques1} montre le résultat obtenu  en temps.
 
-\begin{figure}[htb]
+\begin{figure}
 	\begin{center}
 	\includegraphics[scale=1]{expansion-crop.pdf}
 	\caption{Expansion des symboles $a_k$}
@@ -52,8 +52,7 @@ Jusqu'ici on a les symboles expansés $a_k$. On ne peut pas transmettre cette si
 Nous sommes intéressés par les filtres rectagulaires (NRZ et RZ) et les filtres de cosinus surélevé (SRRC), donc on fera premiérment une analyse en temps et en fréquence de ces filtres de mise en forme.
 Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fréquentielle des filtres NRZ, RZ et SRRC se trouve dans les figures \ref{fig:nrz1M}, \ref{fig:rz1M} et \ref{fig:srrc1M} respectivement.
 
-   
-\begin{figure}[htb]
+\begin{figure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
   		\includegraphics[width=1\linewidth]{impul_nrz-crop.pdf}
@@ -70,7 +69,7 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
 	\label{fig:nrz1M}
 \end{figure} 
 
-\begin{figure}[htb]
+\begin{figure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
   		\includegraphics[width=1\linewidth]{impul_rz-crop.pdf}
@@ -87,7 +86,7 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
 	\label{fig:rz1M}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
   		\includegraphics[width=1\linewidth]{impul_srrc-crop.pdf}
@@ -105,7 +104,7 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
 \end{figure} 
 
 %------------------15Mb
-\begin{figure}[htb]
+\begin{figure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
   		\includegraphics[width=1\linewidth]{impul_nrz_15-crop.pdf}
@@ -122,7 +121,7 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
 	\label{fig:nrz1M}
 \end{figure} 
 
-\begin{figure}[htb]
+\begin{figure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
   		\includegraphics[width=1\linewidth]{impul_rz_15-crop.pdf}
@@ -139,7 +138,7 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
 	\label{fig:rz15M}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
   		\includegraphics[width=1\linewidth]{impul_srrc_15-crop.pdf}
@@ -234,7 +233,7 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
 	\end{center}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}
 	\begin{center}
 	\includegraphics[scale=1]{welch_s_t_noncentree-crop.pdf}
 	\caption{Densité spectrale du puissance de $s_t$ non-centrée.}
@@ -242,7 +241,7 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
 	\end{center}
 \end{figure} 
 
-\begin{figure}[htb]
+\begin{figure}
 	\begin{center}
 	\includegraphics[scale=1]{welch_x_t_noncentree-crop.pdf}
 	\caption{Densité spectrale du puissance de $x_t$ non-centrée.}
@@ -251,14 +250,97 @@ Por le systéme de base ($D=1MHz, \alpha=0.5$) la réponse impulsionnelle et fr�
 \end{figure}
 
 \section{Ajout du bruit blanc gaussien}
+L'ajoute du bruit blanc gaussien dans un canal est inévitable. C'est pour cela que le paramètre RSB est très important et aide à mesurer la puissance du bruit dans le canal. Cette expression est:
+\[ \frac{E_b}{N_0}=F\frac{\sigma ^{2}_x}{\sigma ^{2}_n}\]
+Où, \[ \sigma ^{2}_n = F.N_0/T\]
 \subsubsection*{Question 6}
+Selon les notes du cours la formule de puissance et l'énergie de bit pour les symboles non-corrélés et centrés est:
+\[ P_x=\sigma _x ^2.Ts\left \| h_e \right \|^2 \]
+\[E_b=\sigma _x ^2.Ts\left \| h_e \right \|^2.T_b\]
 
+Où, \[Ts\left \| h_e \right \|^2 = 1\]
+Pour à la fin obtenir que,
+\[E_b=\sigma _x ^2.T_b \]
+Finalement, à partir du RSB on obtient la formule suivante:
+\[\frac{E_b}{N_0}=\frac{\sigma _x ^2.T_b}{N_0} = \frac{F.\sigma _x ^2}{F.N_0/T} = 
+F\frac{\sigma ^{2}_x}{\sigma ^{2}_n}
+\]
+Alors la valeur de la variance du signal \emph{s(t)} est:
+\[\sigma _x ^2=E[a_k^2]-m_a^2= \frac{1}{2}(1^2)+\frac{1}{2}(1^2)-0=\frac{1}{4}\]
+Pour cela, l'expression de la variance du bruit est:
+\[\sigma _n ^2=F\frac{\sigma _x ^2}{(E_b/N_0)_{dB}}\]
 \section{Conversion analogique - numérique}
+Dans une chaîne de transmission, au récepteur arrive un signal bruité et des fois attenué. C'est pour cela que ce signal à besoin d'un certain traitement pour la convertir à numérique.
+
 \subsection{Filtrage adapté}
 \subsubsection*{Question 7}
+Le filtre adapté est le filtre utilisé pour détecter un signal connu dans la présence de BBG. Son but est de maximiser la RSB en diminuant l'effet du bruit. En même temps le filtre adapté est aussi utile pour éliminer l'IES.
 \subsubsection*{Question 8}
+La forme du filtre adapté est la version inversé et decalé du filtre de mise en forme. C'est comme cela car on à besoin de maximiser la RSB. Cela a été fait via la commande \emph{fliplr}.
+\begin{figure}
+	\begin{center}
+	\includegraphics[scale=0.5]{Q8-1.pdf}
+	\caption{Filtres de mise en forme et adapté}
+	\label{fig:ques8-1}
+	\end{center}
+\end{figure} 
+\begin{figure}
+	\begin{center}
+	\includegraphics[scale=0.5]{Q8-2.pdf}
+	\caption{Filtres de mise en forme et adapté}
+	\label{fig:ques8-2}
+	\end{center}
+\end{figure} 
+\begin{figure}
+	\begin{center}
+	\includegraphics[scale=0.5]{Q8-3.pdf}
+	\caption{Filtres de mise en forme et adapté}
+	\label{fig:ques8-3}
+	\end{center}
+\end{figure} 
+
+
 \subsubsection*{Question 9}
+Comme on peut regarder dans les figures \ref{fig:ques8-1}, \ref{fig:ques8-2} et \ref{fig:ques8-3}, la sortie du filtre adapté est maximum dans le temps de bit et nul dans les multiples de ce temps, c'est pour cela qu'on vérifie qu'on peut transmettre sans IES.
+
 \subsubsection*{Question 10}
+Comme on peut regarder dans la figure \ref{fig:q10E}, c'est évident l'effet du bruit dans le diagramme de l'oeil, si on augmente la \emph{RSB} l'oeil sera plus ouvert.
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{Q10-EbNo10.pdf}
+  		\caption{Diagramme de l'oeil pour RSB 10dB}
+  		\label{fig:q10E10}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{Q10-EbNo20.pdf}
+  		\caption{Diagramme de l'oeil pour RSB 20dB}
+  		\label{fig:q10E20}
+	\end{subfigure}
+		%
+	\caption{Différentes diagrammes de l'oeil à differente \emph{RSB}.}
+	\label{fig:q10E}
+\end{figure}
+
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{Q10-EbNo10.pdf}
+  		\caption{Diagramme de l'oeil pour RSB 10dB}
+  		\label{fig:q10E10}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=1\linewidth]{Q10-EbNo20.pdf}
+  		\caption{Diagramme de l'oeil pour RSB 20dB}
+  		\label{fig:q10E20}
+	\end{subfigure}
+	\caption{Différentes diagrammes de l'oeil à differente \emph{RSB}.}
+	\label{fig:q10E}
+\end{figure} 
+
+
 
 \subsection{Décimation}
 \subsubsection*{Question 11}
